@@ -2,9 +2,9 @@ namespace AdventOfCode;
 
 public class Day2
 {
-    public static async Task Run()
+    public static void Run()
     {
-        string[] lines = await File.ReadAllLinesAsync("inputs/inputd2.txt");
+        string[] lines = File.ReadAllLines("inputs/inputd2.txt");
 
         int score = 0; // PART ONE
         int score2 = 0; // PART TWO

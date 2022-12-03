@@ -2,9 +2,9 @@ namespace AdventOfCode;
 
 public class Day1
 {
-    public static async Task Run()
+    public static void Run()
     {
-        string[] lines = await File.ReadAllLinesAsync("inputs/inputd1.txt");
+        string[] lines = File.ReadAllLines("inputs/inputd1.txt");
         
         List<int> calories = new List<int>();
         calories.Add(0); // without newline

@@ -2,9 +2,9 @@ namespace AdventOfCode;
 
 public class Day3
 {
-    public static async Task Run()
+    public static void Run()
     {
-        string[] lines = await File.ReadAllLinesAsync("inputs/inputd3.txt");
+        string[] lines = File.ReadAllLines("inputs/inputd3.txt");
         // string[] lines = new[] { "" };
         
         int score = 0;
@@ -12,27 +12,15 @@ public class Day3
 
         foreach (string line in lines)
         {
-            string c1 = line.Substring(0, (line.Length / 2));
-            string c2 = line.Substring(line.Length / 2, line.Length - c1.Length);
+            ReadOnlySpan<char> c1 = line.Substring(0, (line.Length / 2)).AsSpan();
+            ReadOnlySpan<char> c2 = line.Substring(line.Length / 2, line.Length - c1.Length).AsSpan();
 
-            // array to store if type was added to score
-            int[] types = new int[58];
+            char char2 = c1[c1.IndexOfAny(c2)];
+            int val = char2 - 'A' + 1;
+            if (val > 26) val -= 32;
+            else if (val <= 26) val += 26;
 
-            foreach (char char2 in c2)
-            {
-                if (c1.Contains(char2))
-                {
-                    if(types[char2 - 'A'] != 0)
-                        continue;
-                    types[char2 - 'A']++;
-                    
-                    int val = char2 - 'A' + 1;
-                    if (val > 26) val -= 32;
-                    else if (val <= 26) val += 26;
-
-                    score += val;
-                }
-            }
+            score += val;
         }
 
         for (int i = 0; i < lines.Length; i += 3)
@@ -41,7 +29,7 @@ public class Day3
             char[] c2 = lines[i + 1].ToCharArray();
             char[] c3 = lines[i + 2].ToCharArray();
 
-            char badgeChar = c1.First(x => c2.Contains(x) && c3.Contains(x));
+            char badgeChar = c1.Intersect(c2).Intersect(c3).First();
             int val = badgeChar - 'A' + 1;
             if (val > 26) val -= 32;
             else if (val <= 26) val += 26;
