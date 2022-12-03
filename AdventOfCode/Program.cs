@@ -2,4 +2,4 @@
 
 using AdventOfCode;
 
-await Day2.Run();
+await Day3.Run();
