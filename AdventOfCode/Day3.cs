@@ -25,11 +25,11 @@ public class Day3
 
         for (int i = 0; i < lines.Length; i += 3)
         {
-            char[] c1 = lines[i + 0].ToCharArray();
-            char[] c2 = lines[i + 1].ToCharArray();
-            char[] c3 = lines[i + 2].ToCharArray();
-
-            char badgeChar = c1.Intersect(c2).Intersect(c3).First();
+            char badgeChar = lines[i + 0]
+                .Intersect(lines[i + 1])
+                .Intersect(lines[i + 2])
+                .First();
+            
             int val = badgeChar - 'A' + 1;
             if (val > 26) val -= 32;
             else if (val <= 26) val += 26;
