@@ -14,7 +14,7 @@ public class Day6
         {
             if (pone < line.Length)
             {
-                int[] checkArray = line[(pone - 4)..pone].ToCharArray().Select(x => (int)x).ToArray();
+                char[] checkArray = line[(pone - 4)..pone].ToCharArray();
                 if (checkArray.Distinct().Count() == 4)
                 {
                     Console.WriteLine($"Part one: {pone}");
@@ -25,7 +25,7 @@ public class Day6
 
             if (ptwo < line.Length)
             {
-                int[] checkArray2 = line[(ptwo - 14)..ptwo].ToCharArray().Select(x => (int)x).ToArray();
+                char[] checkArray2 = line[(ptwo - 14)..ptwo].ToCharArray();
                 if (checkArray2.Distinct().Count() == 14)
                 {
                     Console.WriteLine($"Part two: {ptwo}");
