@@ -47,7 +47,6 @@ public class Day7
             long size = long.Parse(split[0]);
             string name = split[1];
             
-            if(currDir.Children.FirstOrDefault(x => x.RelativePath == name) != null) continue;
             currDir.Children.Add(new FileSystem(name, size, currDir, new List<FileSystem>()));
         }
 
@@ -67,7 +66,6 @@ public class Day7
         {
             FileSystem tfs = fs.Children[i];
             CalculateDirSize(ref tfs);
-            fs.Children[i] = tfs;
         }
             
         fs.Size = fs.Children.Select(x => x.Size).Sum();
